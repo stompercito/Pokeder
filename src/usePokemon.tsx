@@ -1,6 +1,8 @@
 import { useFetch } from './useFetch';
+import { v4 as uuidv4 } from 'uuid';
 
 export class Pokemon {
+    id: string;
     name: string;
     gender: string;
     eggGroup: string;
@@ -9,7 +11,8 @@ export class Pokemon {
     evolves_from: string | null;
     img: string;
 
-    constructor(name: string, gender: string, eggGroup: string, type: string, habitat: string, evolves_from: string, img: string) {
+    constructor(id: string, name: string, gender: string, eggGroup: string, type: string, habitat: string, evolves_from: string, img: string) {
+        this.id = id;
         this.name = name;
         this.gender = gender;
         this.eggGroup = eggGroup;
@@ -39,7 +42,7 @@ export function usePokemon(pokemonData: {pokemonName: string, formData: Dataform
         let evolves = null;
         if (pokemonEspecieDetail.habitat) habitat = pokemonEspecieDetail.habitat.name;
         if (pokemonEspecieDetail.evolves_from_species) evolves = pokemonEspecieDetail.evolves_from_species.name;
-        return new Pokemon(pokemonDetail.name, pokemonData.formData.gender, pokemonData.formData.eggGroup, pokemonData.formData.type, habitat, evolves, pokemonDetail.sprites.front_default);
+        return new Pokemon(uuidv4(), pokemonDetail.name, pokemonData.formData.gender, pokemonData.formData.eggGroup, pokemonData.formData.type, habitat, evolves, pokemonDetail.sprites.front_default);
     }
 
     return false;

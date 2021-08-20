@@ -216,7 +216,6 @@ export function List() {
         window.location.href = "http://localhost:3000/form";
     } else {
         const { name } = JSON.parse(localStorage.getItem('user')!);
-        const listArr: any = JSON.parse(localStorage.getItem('list')!);
 
         const deleteHandler = () => {
             localStorage.clear();
@@ -230,7 +229,7 @@ export function List() {
         return (
             <div className="list">
                 <h1>This is your list {name}</h1>
-                <AlignItemsList list = {listArr} />
+                <AlignItemsList/>
                 <br></br>
                 <button style = {{marginRight: '20px'}} onClick={formHandler}> Find a new match</button>
                 <button style = {{marginLeft: '20px'}} onClick={deleteHandler}> Delete User</button>
